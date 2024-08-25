@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { MessageSquare, Briefcase, Building, GraduationCap, Heart, SendHorizontal, TrendingUp, Users, Award } from 'lucide-react';
+import './Chatbot.css'; // Import the CSS for the chatbot
 
 const AnimatedNumber = ({ n }) => {
   const [count, setCount] = useState(0);
@@ -41,6 +42,7 @@ const AnimatedBar = ({ width }) => {
 const JDWithAnimatedInfographics = () => {
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState('');
+  const [isOpen, setIsOpen] = useState(false); // State for chatbot toggle
 
   const handleSendMessage = () => {
     if (inputMessage.trim() !== '') {
@@ -53,6 +55,10 @@ const JDWithAnimatedInfographics = () => {
     }
   };
 
+  const toggleChatbot = () => {
+    setIsOpen(!isOpen);
+  };
+
   const SectionHeader = ({ icon: Icon, title }) => (
     <h2 className="text-2xl font-semibold mb-3 flex items-center">
       <Icon className="mr-2" size={24} />
@@ -62,7 +68,7 @@ const JDWithAnimatedInfographics = () => {
 
   return (
     <div className="App">
-      <div className="left-column">
+      <div className="left-column bright-white-bg"> {/* Apply new background color */}
         <h1 className="text-3xl font-bold mb-6">Senior Software Engineer</h1>
         
         <section className="mb-6">
@@ -146,33 +152,36 @@ const JDWithAnimatedInfographics = () => {
       </div>
 
       <div className="right-column">
-        <div className="chat-interface">
-          <div className="p-4 border-b">
-            <h2 className="text-xl font-semibold flex items-center">
-              <MessageSquare className="mr-2" size={24} />
-              Interactive Q&A
-            </h2>
+        {/* Chatbot HTML embedded as JSX */}
+        <div id="chatbot-container">
+          <div id="chatbot-header">
+            SooCrates
           </div>
-          <div className="flex-grow overflow-y-auto p-4">
-            {messages.map((message, index) => (
-              <div key={index} className={`mb-2 ${message.type === 'user' ? 'text-right' : ''}`}>
-                <span className={`inline-block p-2 rounded ${message.type === 'user' ? 'bg-blue-500 text-white' : 'bg-gray-200'}`}>
-                  {message.text}
-                </span>
-              </div>
-            ))}
+          <div className="orb-avatar" id="orb-avatar"></div>
+          <div id="chatbot-content">
+            <div className="chatbot-message">
+              <div className="sc-avatar">SC</div>
+              <p>Hello! I'm here to help you with your tasks. How can I assist you today?</p>
+            </div>
+            <div className="user-message">
+              <p>Can you guide me through creating a new job description?</p>
+            </div>
+            <div className="chatbot-message">
+              <div className="sc-avatar">SC</div>
+              <p>Of course! Let's start by discussing the key responsibilities of the role you're hiring for.</p>
+            </div>
+            <div className="user-message">
+              <p>The role is for a Senior Software Engineer. They need to lead a team and work on backend development.</p>
+            </div>
+            <div className="chatbot-message">
+              <div className="sc-avatar">SC</div>
+              <p>Great! Would you like me to suggest specific technical skills and qualifications for this position?</p>
+            </div>
           </div>
-        </div>
-        <div className="chat-input">
-          <input
-            type="text"
-            value={inputMessage}
-            onChange={(e) => setInputMessage(e.target.value)}
-            placeholder="Ask about this job..."
-          />
-          <button onClick={handleSendMessage}>
-            Send
-          </button>
+          <div className="chat-input">
+            <input type="text" placeholder="Type your message..." />
+            <button>Send</button>
+          </div>
         </div>
       </div>
     </div>
