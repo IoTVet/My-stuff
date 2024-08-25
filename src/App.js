@@ -1,23 +1,11 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import JDWithAnimatedInfographics from './PublicViewer'; // Import the JDWithAnimatedInfographics component from PublicViewer.js
+import './App.css'; // Import your CSS file here
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <JDWithAnimatedInfographics /> {/* Render the JDWithAnimatedInfographics component */}
     </div>
   );
 }
